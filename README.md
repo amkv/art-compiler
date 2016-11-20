@@ -3,7 +3,7 @@ art compiler<br>script helps you to compile and launch your program<br>
 with 0 arguments, with multiple arguments, with preset argument<br>
 and save history of your compilations and launches
 
-https://github.com/amkv/art-compiler.git<br>
+git clone https://github.com/amkv/art-compiler.git art-compiler<br>
 chmode 755 q.sh<br>
 ./q.sh
 <br><br>
