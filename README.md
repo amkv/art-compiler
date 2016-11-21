@@ -16,7 +16,7 @@ script helps you to compile and launch your program
 Copy/paste to terminal
 
     git clone https://github.com/amkv/art-compiler.git art-compiler
-    chmode 755 q.sh<br>
+    chmode 755 q.sh
     ./q.sh
 
 don't forget to configure
