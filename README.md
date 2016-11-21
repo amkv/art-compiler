@@ -11,6 +11,8 @@ and save history of your compilations and launches
     q.sh -l						        show log file
     q.sh -h						        or --help to show this help
     
+Copy/paste to terminal
+
     git clone https://github.com/amkv/art-compiler.git art-compiler
     chmode 755 q.sh<br>
     ./q.sh
