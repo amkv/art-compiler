@@ -74,6 +74,7 @@ then
 	echo -e $WHT"q.sh"$CLN "\t\t\t\tcompile and launch with preset argument"
 	echo -e $WHT"q.sh -0"$CLN "\t\t\tcompile and launch without arguments"
 	echo -e $WHT"q.sh -f"$CLN"\t\t\t\tshow used functions in your executable file"
+	echo -e $WHT"q.sh -o"$CLN"\t\t\t\topen project folder in Finder"
 	echo -e $WHT"q.sh -c"$CLN"\t\t\t\tshow colored compiler's errors"
 	echo -e $WHT"q.sh -l"$CLN"\t\t\t\tshow log file"
 	echo -e $WHT"q.sh -h"$CLN "\t\t\tor --help to show this help"
@@ -86,6 +87,13 @@ if [ "$1" == "-l" ]
 then
 	LOG "looking this log file"
 	cat $LOGS
+	exit 0
+fi
+
+# Open project folder in Finder
+if [ "$1" == "-o" ]
+then
+	open .
 	exit 0
 fi
 
