@@ -71,14 +71,17 @@ then
 	echo -e "\tand save history of your compilations and launches"
 	echo -e "\tdo not forget to configure...\n"
 	echo -e $WHT"q.sh$CLN arg1 arg2 arg3 ..." "\tcompile and launch with multiple arguments"
-	echo -e $WHT"q.sh"$CLN "\t\t\t\tcompile and launch or use preset argument"
+	echo -e $WHT"q.sh"$CLN "\t\t\t\tcompile and launch with preset argument"
 	echo -e $WHT"q.sh -0"$CLN "\t\t\tcompile and launch without arguments"
-	echo -e $WHT"q.sh -f"$CLN"\t\t\t\tshow used functions in your executable file"
-	echo -e $WHT"q.sh -o"$CLN"\t\t\t\topen project folder in Finder"
+	echo -e $WHT"q.sh -a"$CLN"\t\t\t\tedit preset argument"
 	echo -e $WHT"q.sh -c"$CLN"\t\t\t\tshow colored compiler's errors"
-	echo -e $WHT"q.sh -v"$CLN"\t\t\t\tedit preset argument"
-	echo -e $WHT"q.sh -l"$CLN"\t\t\t\tshow log file"
+	echo -e $WHT"q.sh -f"$CLN"\t\t\t\tedit/add project's *.c files"
 	echo -e $WHT"q.sh -h"$CLN "\t\t\tor --help to show this help"
+	echo -e $WHT"q.sh -l"$CLN"\t\t\t\tshow log file"
+	echo -e $WHT"q.sh -n"$CLN"\t\t\t\tcheck project's files with normenette"
+	echo -e $WHT"q.sh -o"$CLN"\t\t\t\topen project folder in Finder"
+	echo -e $WHT"q.sh -t"$CLN"\t\t\t\tshow time for executable"
+	echo -e $WHT"q.sh -u"$CLN"\t\t\t\tshow used functions in your executable file"
 	echo -e "\n"
 	exit 0
 fi
@@ -91,10 +94,26 @@ then
 	exit 0
 fi
 
-if [ "$1" == "-v" ]
+# Edit preset argument
+if [ "$1" == "-a" ]
 then
 	vim +15 q.sh
 fi
+
+# Edit/add project's *.c files
+if [ "$1" == "-f" ]
+then
+	vim +11 q.sh
+fi
+
+# Check project files with norminette
+if [ "$1" == "-n" ]
+then
+	LOG "check $CFILES with the norminette"
+	norminette $CFILES | tee -a $LOGS
+	exit 0
+fi
+
 
 # Open project folder in Finder
 if [ "$1" == "-o" ]
@@ -104,7 +123,7 @@ then
 fi
 
 # Show used functions in your exucutable file
-if [ "$1" == "-f" ]
+if [ "$1" == "-u" ]
 then
 	if [ -a $NAME ]
 	then
