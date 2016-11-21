@@ -71,11 +71,12 @@ then
 	echo -e "\tand save history of your compilations and launches"
 	echo -e "\tdo not forget to configure...\n"
 	echo -e $WHT"q.sh$CLN arg1 arg2 arg3 ..." "\tcompile and launch with multiple arguments"
-	echo -e $WHT"q.sh"$CLN "\t\t\t\tcompile and launch with preset argument"
+	echo -e $WHT"q.sh"$CLN "\t\t\t\tcompile and launch or use preset argument"
 	echo -e $WHT"q.sh -0"$CLN "\t\t\tcompile and launch without arguments"
 	echo -e $WHT"q.sh -f"$CLN"\t\t\t\tshow used functions in your executable file"
 	echo -e $WHT"q.sh -o"$CLN"\t\t\t\topen project folder in Finder"
 	echo -e $WHT"q.sh -c"$CLN"\t\t\t\tshow colored compiler's errors"
+	echo -e $WHT"q.sh -v"$CLN"\t\t\t\tedit preset argument"
 	echo -e $WHT"q.sh -l"$CLN"\t\t\t\tshow log file"
 	echo -e $WHT"q.sh -h"$CLN "\t\t\tor --help to show this help"
 	echo -e "\n"
@@ -88,6 +89,11 @@ then
 	LOG "looking this log file"
 	cat $LOGS
 	exit 0
+fi
+
+if [ "$1" == "-v" ]
+then
+	vim +15 q.sh
 fi
 
 # Open project folder in Finder
@@ -119,7 +125,7 @@ else
 fi
 
 # clear the screen
-# clear
+clear
 
 # Compiling 
 # add new Flags here
@@ -135,15 +141,21 @@ fi
 # IF compiled, IF No arguments, IF 0 to 3... arguments, IF preset argument value
 if [ -a $NAME ]
 then
-	echo -e $BLU"compiled"$CLN
+	echo -e "${NAME}$BLU compiled"$CLN
 	LOG "${NAME} successfully compiled"
 	if [ "$#" -gt 0 ]
 	then
 		if [ "$1" == "-0" ]
 		then
-			echo -e $GRN"NO arguments"$CLN
+			echo -e $GRN"no arguments"$CLN
 			LOG "running ${NAME} without arguments\n"
 			./$NAME | tee -a $LOGS
+			exit 0
+		fi
+		if [ "$1" == "-t" ]
+		then
+			LOG "shows time"
+			time 2>&1 ./$NAME | tee -a $LOGS
 			exit 0
 		fi
 		LOG "running ${NAME} with $# arguments: $@\n"
@@ -155,7 +167,7 @@ then
 			LOG "running ${NAME} with empty preset argument\n"
 		else
 			LOG "running ${NAME} with 1 preset argument: $ARG\n"
-			echo -e $GRN"argument:"$CLN $ARG
+			echo -e $GRN"preset argument:"$CLN $ARG
 		fi
 		./$NAME "$ARG" | tee -a $LOGS
 	fi
@@ -163,5 +175,4 @@ else
 	LOG "error compiling"
 	echo -e $RED"compiling error"$CLN
 fi
-
 
