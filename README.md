@@ -8,6 +8,7 @@ and save history of your compilations and launches
     q.sh -f						        show used functions in your executable file
     q.sh -o						        open project folder in Finder
     q.sh -c						        show colored compiler's errors
+    q.sh -v						        edit preset argument
     q.sh -l						        show log file
     q.sh -h						        or --help to show this help
     
