@@ -8,7 +8,7 @@ NAME=a.out
 
 # Files for compiling
 # add new CFILES="main.c second.c" or add new line CFILES+="third.c"
-CFILES=sort_list.c
+CFILES=main.c
 
 # Preset argument
 # ARG=file.txt or ARG="this is my test string"
@@ -66,16 +66,38 @@ fi
 if [ "$1" == "--help" -o "$1" == "-h" -o $IS_FILE_EXIST == 0 ]
 then
 	LOG "you have read about how to use this script"
-	echo -e "usage: ${WHT}art compiler${CLN}\n\tq.sh script helps you to compile and launch your program"
+	echo -e "usage:  ${WHT}art compiler${CLN}\n\tq.sh script helps you to compile and launch your program"
 	echo -e "\twith 0 arguments, with multiple arguments, with preset (ARG variable) argument"
 	echo -e "\tand save history of your compilations and launches"
 	echo -e "\tdo not forget to configure...\n"
-	echo -e $WHT"q.sh$CLN arg1 arg2 arg3 ..." "\t\tfor arguments"
-	echo -e $WHT"q.sh"$CLN "\t\t\t\t\tfor preset argument"
-	echo -e $WHT"q.sh -0"$CLN "\t\t\t\tfor NO arguments"
-	echo -e $WHT"q.sh -c"$CLN"\t\t\t\t\tfor colored compiler errors"
-	echo -e $WHT"q.sh -h"$CLN "\t\t\t\tor --help to show this help"
+	echo -e $WHT"q.sh$CLN arg1 arg2 arg3 ..." "\tcompile and launch with multiple arguments"
+	echo -e $WHT"q.sh"$CLN "\t\t\t\tcompile and launch with preset argument"
+	echo -e $WHT"q.sh -0"$CLN "\t\t\tcompile and launch without arguments"
+	echo -e $WHT"q.sh -f"$CLN"\t\t\t\tshow used functions in your executable file"
+	echo -e $WHT"q.sh -c"$CLN"\t\t\t\tshow colored compiler's errors"
+	echo -e $WHT"q.sh -l"$CLN"\t\t\t\tshow log file"
+	echo -e $WHT"q.sh -h"$CLN "\t\t\tor --help to show this help"
 	echo -e "\n"
+	exit 0
+fi
+
+# Show log file
+if [ "$1" == "-l" ]
+then
+	LOG "looking this log file"
+	cat $LOGS
+	exit 0
+fi
+
+# Show used functions in your exucutable file
+if [ "$1" == "-f" ]
+then
+	if [ -a $NAME ]
+	then
+		nm $NAME | grep "U _" | grep -v "___" | tr -d " " | sed 's/^.//'
+	else
+		echo "file $NAME doesn't exist, recompile your exectutable file"
+	fi
 	exit 0
 fi
 
