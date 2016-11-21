@@ -8,7 +8,7 @@ NAME=a.out
 
 # Files for compiling
 # add new CFILES="main.c second.c" or add new line CFILES+="third.c"
-CFILES=main.c
+CFILES=ft_split.c
 
 # Preset argument
 # ARG=file.txt or ARG="this is my test string"
@@ -150,8 +150,13 @@ then
 		echo -e $GRN$# "argument(s):"$CLN $@
 		./$NAME $@ | tee -a $LOGS
 	else
-		echo -e $GRN"argument:"$CLN $ARG
-		LOG "running ${NAME} with 1 preset argument: $ARG\n"
+		if [ "$ARG" == "" ]
+		then
+			LOG "running ${NAME} with empty preset argument\n"
+		else
+			LOG "running ${NAME} with 1 preset argument: $ARG\n"
+			echo -e $GRN"argument:"$CLN $ARG
+		fi
 		./$NAME "$ARG" | tee -a $LOGS
 	fi
 else
