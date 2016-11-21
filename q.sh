@@ -29,6 +29,9 @@ CAT="cat -e"
 # Compiler
 CC=gcc
 
+# Download folder
+DWNFOLDER=~/Downloads/
+
 # Compile
 COMPILE="$CC $WFLAGS $MFLAGS $OFLAGS $CFILES -o $NAME"
 
@@ -83,6 +86,19 @@ then
 	echo -e "q.sh ${WHT}-t"${CLN}"\t\t\tshow time for executable"
 	echo -e "q.sh ${WHT}-u"${CLN}"\t\t\tshow used functions in your executable file"
 	echo
+	echo -e "${WHT}Download other usefull tools${CLN} to ${DWNFOLDER}tool_name"
+	echo -e "q.sh ${WHT}-d1"${CLN}"\t\t42FileChecker"
+	echo
+	exit 0
+fi
+
+
+# Download other usefull tools, 42FileChecker
+if [ "$1" == "-d1" ]
+then
+	TOOLNAME="42FileChecker"
+	# git clone https://github.com/jgigault/42FileChecker.git ${DWNFOLDER}${TOOLNAME}
+	echo -e "look at your new tool here (copy/paste):\ncd ${WHT}${DWNFOLDER}${TOOLNAME}${CLN}"
 	exit 0
 fi
 
@@ -144,7 +160,7 @@ else
 fi
 
 # clear the screen
-clear
+# clear
 
 # Compiling 
 # add new Flags here
