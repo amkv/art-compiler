@@ -12,7 +12,7 @@ CFILES=ft_split.c
 
 # Preset argument
 # ARG=file.txt or ARG="this is my test string"
-ARG=
+ARG="this is my string"
 
 # Usefull flags
 WFLAGS="-Wall -Wextra -Werror"
@@ -24,7 +24,7 @@ MFLAGS="-I. -fsanitize=address"
 OFLAGS=
 
 # cat -e 
-CAT="cat -e"
+CAT=
 
 # Compiler
 CC=gcc
@@ -123,12 +123,14 @@ fi
 if [ "$1" == "-a" ]
 then
 	vim +15 q.sh
+	exit 0
 fi
 
 # Edit/add project's *.c files
 if [ "$1" == "-f" ]
 then
 	vim +11 q.sh
+	exit 0
 fi
 
 # Check project files with norminette
@@ -169,7 +171,7 @@ else
 fi
 
 # clear the screen
-# clear
+clear
 
 # Compiling 
 # add new Flags here
@@ -204,7 +206,7 @@ then
 		fi
 		LOG "running ${NAME} with $# arguments: $@\n"
 		echo -e $GRN$# "argument(s):"$CLN $@
-		./$NAME $@ | tee -a $LOGS
+		./$NAME "$@" | tee -a $LOGS
 	else
 		if [ "$ARG" == "" ]
 		then
