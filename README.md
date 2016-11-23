@@ -14,6 +14,11 @@ script helps you to compile and launch your program
     q.sh -t		     show time for executable
     q.sh -u		     show used functions in your executable file
     
+    Download other usefull tools
+    read the manuals! (README.md)
+    q.sh -d1		LDAP get student's phone number
+    q.sh -d2		42FileChecker
+    
 Copy/paste to terminal
 
     git clone https://github.com/amkv/art-compiler.git art-compiler
