@@ -81,7 +81,7 @@ then
 	echo -e "q.sh ${WHT}-f"${CLN}"\t\t\tedit/add project's *.c files"
 	echo -e "q.sh ${WHT}-h"${CLN}"\t\t\tor --help to show this help"
 	echo -e "q.sh ${WHT}-l"${CLN}"\t\t\tshow log file"
-	echo -e "q.sh ${WHT}-i"${CLN} arg1"\t\t\tshow the files in library .a"
+	echo -e "q.sh ${WHT}-i"${CLN} arg1"\t\tshow the files in your library.a file"
 	echo -e "q.sh ${WHT}-n"${CLN}"\t\t\tcheck project's files with normenette"
 	echo -e "q.sh ${WHT}-o"${CLN}"\t\t\topen project folder in Finder"
 	echo -e "q.sh ${WHT}-t"${CLN}"\t\t\tshow time for executable"
