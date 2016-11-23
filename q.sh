@@ -81,6 +81,7 @@ then
 	echo -e "q.sh ${WHT}-f"${CLN}"\t\t\tedit/add project's *.c files"
 	echo -e "q.sh ${WHT}-h"${CLN}"\t\t\tor --help to show this help"
 	echo -e "q.sh ${WHT}-l"${CLN}"\t\t\tshow log file"
+	echo -e "q.sh ${WHT}-i"${CLN} arg1"\t\t\tshow the files in library .a"
 	echo -e "q.sh ${WHT}-n"${CLN}"\t\t\tcheck project's files with normenette"
 	echo -e "q.sh ${WHT}-o"${CLN}"\t\t\topen project folder in Finder"
 	echo -e "q.sh ${WHT}-t"${CLN}"\t\t\tshow time for executable"
@@ -108,6 +109,13 @@ then
 	TOOLNAME="42FileChecker"
 	git clone https://github.com/jgigault/42FileChecker.git ${DWNFOLDER}${TOOLNAME}
 	echo -e "look at your new tool here (copy/paste):\ncd ${WHT}${DWNFOLDER}${TOOLNAME}${CLN}"
+	exit 0
+fi
+
+# Show the files in the library.a file
+if [ "$1" == "-i" ]
+then
+	ar t "$2"
 	exit 0
 fi
 
