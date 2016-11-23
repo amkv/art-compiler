@@ -7,6 +7,7 @@ script helps you to compile and launch your program
     q.sh -c		     show colored compiler's errors
     q.sh -f		     edit/add project's *.c files
     q.sh -h		     or --help to show this help
+    q.sh -i  arg1    show your_library.a file's content
     q.sh -l		     show log file
     q.sh -n		     check project's files with normenette
     q.sh -o		     open project folder in Finder
